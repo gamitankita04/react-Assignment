@@ -1,0 +1,522 @@
+Question 1 : What is React.js? How is it different from other JavaScript frameworks and libraries?
+
+Answer:
+        React.js is an open-source JavaScript library developed by Facebook for building user interfaces, especially single-page applications. 
+        It focuses on creating reusable UI components and efficiently updating the UI when data changes.
+        Unlike many other frameworks, React is only concerned with the view layer and uses a declarative approach, making it easy to manage complex UIs.
+        React’s component-based architecture and use of a virtual DOM set it apart from traditional frameworks like Angular or Vue.
+
+Question 2 : Explain the core principles of React such as the virtual DOM and component-based architecture.
+
+Answer:
+        The core principles of React include:
+        - Virtual DOM: React creates a lightweight copy of the actual DOM in memory. When changes occur, React updates the virtual DOM first, then efficiently updates only the changed parts in the real DOM, improving performance.
+        - Component-Based Architecture: React applications are built using small, reusable components. Each component manages its own state and logic, making code modular, maintainable, and easy to test.
+
+Question 3 : What are the advantages of using React.js in web development?
+
+Answer:
+        Advantages of using React.js include:
+        - Reusable components that speed up development and reduce code duplication.
+        - Fast rendering with the virtual DOM, leading to better performance.
+        - A large ecosystem and strong community support.
+        - Easy integration with other libraries or frameworks.
+        - Declarative syntax that makes code more predictable and easier to debug.
+
+Question 4 : What is JSX in React.js? Why is it used?
+
+Answer:
+        JSX (JavaScript XML) is a syntax extension for JavaScript used in React. 
+        It allows you to write HTML-like code within JavaScript files. JSX makes 
+        it easier to visualize the UI structure and helps React developers create 
+        components in a more readable and declarative way.
+
+Question 5 : How is JSX different from regular JavaScript? Can you write JavaScript inside 
+JSX?
+
+Answer:
+        JSX looks similar to HTML but is not valid JavaScript. 
+        It must be transpiled (usually by Babel) into regular JavaScript before 
+        browsers can understand it. You can write JavaScript expressions inside JSX 
+        by wrapping them in curly braces {}.
+
+        Example:
+                import React from 'react';
+
+                function Greeting() {
+                const name = 'John';
+
+                return <h1>Hello, {name}!</h1>;
+                }
+
+                export default Greeting;
+
+Question 6 : Discuss the importance of using curly braces {} in JSX expressions.
+
+Answer:
+        Curly braces {} in JSX are used to embed JavaScript expressions within 
+        the markup.
+        This allows you to dynamically display values, call functions, or use 
+        variables inside your JSX code. 
+        Without curly braces, JSX treats the content as plain text,
+        not as executable JavaScript.
+
+Question 7 : What are components in React? Explain the difference between functional components and class components.
+
+Answer:
+        Components are the building blocks of a React application. 
+        They encapsulate UI and logic, making code reusable and modular.
+
+        Functional components are simple JavaScript functions that return JSX. 
+        They are easier to write and use React hooks for state and lifecycle 
+        features.
+
+        Class components are ES6 classes that extend React.Component and must 
+        include a render() method. They use lifecycle methods and can manage 
+        state using this.state.
+
+Question 8 : How do you pass data to a component using props?
+
+Answer:
+        Data is passed to components via props (short for "properties"). 
+        Props are specified as attributes in the JSX tag and accessed inside 
+        the component.
+
+        Example:
+                import React from 'react';
+
+                function Greeting(props) {
+                return <h1>Hello, {props.name}!</h1>;
+                }
+
+                function App() {
+                return (
+                    <div>
+                    <Greeting name="John" />
+                    <Greeting name="Jane" />
+                    </div>
+                );
+                }                
+
+Question 9 : What is the role of render() in class components?
+
+Answer:
+        The render() method in a class component returns the JSX that defines the 
+        component’s UI. 
+        It is called whenever the component needs to update its display, such as 
+        after state or props change.
+
+Question 10 : What are props in React.js? How are props different from state?
+
+Answer:
+        Props (short for "properties") are read-only data passed from parent to 
+        child components. They allow components to receive dynamic values and 
+        configuration.
+        State is internal data managed by the component itself. 
+        Unlike props, state can be changed by the component and is used to track 
+        dynamic information.
+
+Question 11 : Explain the concept of state in React and how it is used to manage component data.
+
+Answer:
+        State is an object that stores dynamic data for a component. 
+        When state changes, React re-renders the component to reflect the new data. 
+        State is commonly used for user input, UI changes, and other data that can 
+        change over time.
+
+Question 12 : Why is this.setState() used in class components, and how does it work?
+
+Answer:
+        this.setState() is used to update the state in class components. 
+        It schedules a re-render and merges the new state with the existing state.
+        React then updates the UI to reflect the changes. Directly modifying state 
+        without setState() will not trigger a re-render.
+
+
+Question 13: How are events handled in React compared to vanilla JavaScript? Explain the concept of synthetic events.
+In Vanilla JavaScript
+
+Answer:
+
+                You directly attach event listeners to DOM elements.
+
+                document.getElementById("btn").addEventListener("click", function () {
+                alert("Button clicked!");
+                });
+
+                In React
+
+                You attach event handlers as props to JSX elements using camelCase instead of lowercase.
+
+                Example:
+
+                function App() {
+                const handleClick = () => {
+                alert("Button clicked!");
+                };
+
+                return <button onClick={handleClick}>Click Me</button>;
+                }
+
+                Synthetic Events
+
+                React uses its own wrapper around the browser’s native events, called SyntheticEvent.
+
+                It provides a consistent interface across all browsers.
+
+                React internally uses event delegation: instead of attaching event handlers directly to each DOM node, React attaches them at the root and manages them efficiently.
+
+                Key Benefits:
+
+                Cross-browser compatibility.
+
+                Performance optimization (via event delegation).
+
+                Same event object API for all browsers.
+
+Question 14: Common event handlers in React.js with examples
+
+Answer:
+
+                1.onClick
+
+                function App() {
+                const handleClick = () => {
+                alert("Button was clicked!");
+                };
+
+                return <button onClick={handleClick}>Click Me</button>;
+                }
+
+
+                2.onChange
+
+                function App() {
+                const [text, setText] = React.useState("");
+
+                const handleChange = (e) => {
+                setText(e.target.value);
+                };
+
+                return (
+                <div>
+                <input type="text" onChange={handleChange} />
+                <p>You typed: {text}</p>
+                </div>
+                );
+                }
+
+
+                3.onSubmit
+
+                function App() {
+                const handleSubmit = (e) => {
+                e.preventDefault(); // prevent page reload
+                alert("Form submitted!");
+                };
+
+                return (
+                <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Enter something" />
+                <button type="submit">Submit</button>
+                </form>
+                );
+                }
+
+Question 15: Why do you need to bind event handlers in class components?
+
+Answer:
+        In class components, event handlers don’t automatically bind this to the class instance.
+
+        Example of the problem:
+
+        class App extends React.Component {
+        handleClick() {
+        console.log(this); // undefined (not bound)
+        }
+
+        render() {
+        return <button onClick={this.handleClick}>Click Me</button>;
+        }
+        }
+
+
+        To fix it, you bind this so that the event handler has the correct context:
+
+        class App extends React.Component {
+        constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this); // binding here
+        }
+
+        handleClick() {
+        console.log("Button clicked", this);
+        }
+
+        render() {
+        return <button onClick={this.handleClick}>Click Me</button>;
+        }
+        }
+
+        Modern Alternatives:
+
+        Use arrow functions to auto-bind:
+
+        class App extends React.Component {
+        handleClick = () => {
+        console.log("Button clicked", this); //  auto-binds
+        };
+
+        render() {
+        return <button onClick={this.handleClick}>Click Me</button>;
+        }
+        }
+
+Question 16: What is conditional rendering in React? How can you conditionally render elements in a React component?
+
+Answer:
+        Definition:
+
+        Conditional rendering in React means displaying UI elements only if certain conditions are met.
+
+        It works like conditionals in JavaScript, but used inside JSX.
+
+        React will decide what to show (or not show) based on a condition (like a state, props, or variable).
+
+        Example:
+        function App() {
+        const isLoggedIn = true;
+
+        return (
+        <div>
+        {isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please log in</h1>}
+        </div>
+        );
+        }
+
+
+Question 17: Conditional Rendering in JSX using different methods
+
+Answer:
+        1. Using if-else
+
+        You cannot use if-else directly inside JSX, but you can use it before return:
+
+        function App() {
+        const isLoggedIn = false;
+        let message;
+
+        if (isLoggedIn) {
+        message = <h1>Welcome back!</h1>;
+        } else {
+        message = <h1>Please log in</h1>;
+        }
+
+        return <div>{message}</div>;
+        }
+
+        2. Using Ternary Operator (condition ? true : false)
+
+        Most common way inside JSX.
+
+        function App() {
+        const isLoggedIn = true;
+
+        return (
+        <div>
+        {isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please log in</h1>}
+        </div>
+        );
+        }
+
+        3. Using Logical AND (&&)
+
+        If the condition is true, the right side is rendered.
+
+        If the condition is false, React ignores it (renders nothing).
+
+        function App() {
+        const isLoggedIn = true;
+
+        return (
+        <div>
+        {isLoggedIn && <h1>Welcome back!</h1>}
+        {!isLoggedIn && <h1>Please log in</h1>}
+        </div>
+        );
+        }
+
+Question 18: How do you render a list of items in React? Why is it important to use keys when rendering lists?
+
+Answer:
+        Rendering a List
+
+        In React, we usually render lists by mapping over an array and returning JSX for each item.
+
+        Example:
+
+        function App() {
+        const fruits = ["Apple", "Banana", "Mango", "Orange"];
+
+        return (
+        <ul>
+        {fruits.map((fruit, index) => (
+                <li key={index}>{fruit}</li>
+        ))}
+        </ul>
+        );
+        }
+
+
+        map() is used to loop through the array.
+
+        Each <li> element gets rendered dynamically.
+
+        Why are keys important?
+
+        Keys help React identify which items have changed, been added, or removed.
+
+        This allows React’s Virtual DOM diffing algorithm to update only the changed elements, instead of re-rendering the entire list.
+
+        Without keys, React may unnecessarily re-render items, which can cause performance issues and even UI bugs (e.g., losing input focus in a list).
+
+Question 19: What are keys in React, and what happens if you do not provide a unique key?
+
+Answer:
+        What are keys?
+
+        A key is a special string attribute you must include when creating lists of elements.
+
+        It should be unique among siblings in a list (not necessarily globally unique).
+
+        Example:
+
+        {fruits.map((fruit) => (
+        <li key={fruit}>{fruit}</li>
+        ))}
+
+        What happens if you don’t provide a unique key?
+
+        React will warn you in the console: "Each child in a list should have a unique 'key' prop."
+
+        React will fall back to using the array index as the key.
+
+        This can cause bugs when the list is modified:
+
+        Wrong items may re-render.
+
+        Input fields inside lists may lose focus.
+
+        Animations or transitions may behave incorrectly.
+
+        Example of Bug without Unique Keys
+        function App() {
+        const [items, setItems] = React.useState(["A", "B", "C"]);
+
+        return (
+        <div>
+        {items.map((item, index) => (
+                <input key={index} defaultValue={item} />
+        ))}
+        <button onClick={() => setItems(["X", ...items])}>
+                Add to Start
+        </button>
+        </div>
+        );
+        }
+
+
+        If you use index as a key, when "X" is added, React may think the old inputs are just updated instead of shifted, causing values to appear in the wrong input boxes.
+
+Question 20: How do you handle forms in React? Explain the concept of controlled components.
+
+Answer:
+        Handling Forms in React
+
+        In plain HTML, form elements like <input>, <textarea>, and <select> keep their own state (the DOM controls them).
+
+        In React, we often want React to control the form data by storing it in component state.
+
+        This is done using Controlled Components.
+
+        Controlled Components
+
+        A controlled component is a form element whose value is controlled by React state.
+
+        The component’s state is the “single source of truth”.
+
+        You update the value with onChange, and React re-renders with the new value.
+
+        Example:
+
+        import { useState } from "react";
+
+        function FormExample() {
+        const [name, setName] = useState("");
+
+        const handleChange = (e) => {
+        setName(e.target.value);
+        };
+
+        const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(`Submitted name: ${name}`);
+        };
+
+        return (
+        <form onSubmit={handleSubmit}>
+        <input type="text" value={name} onChange={handleChange} />
+        <button type="submit">Submit</button>
+        </form>
+        );
+        }
+
+
+        Here:
+
+        value={name} makes the input controlled by state.
+
+        onChange updates the state whenever user types.
+
+Question 21: Difference between Controlled and Uncontrolled Components
+
+Answer:
+        Feature	                 Controlled Component	                 Uncontrolled Component
+        
+        Data Source	         Form data is stored in React state	Form data is stored in the DOM itself
+       
+        How to Access Value      Via state variables	                Via ref to directly access DOM node
+       
+        Single Source of Truth	 React state	                        DOM
+       
+        When to Use	         When you need real-time validation, 
+                                 instant updates, or to handle complex 
+                                 forms	                                    When you want simpler, less React-managed 
+                                                                            forms (quick, minimal code)
+        
+        Example	                <input value={name} onChange={...} />	<input defaultValue="John" ref={inputRef} />
+        
+        
+        Example: Uncontrolled Component
+        import { useRef } from "react";
+
+        function UncontrolledForm() {
+        const inputRef = useRef(null);
+
+        const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(`Submitted name: ${inputRef.current.value}`);
+        };
+
+        return (
+        <form onSubmit={handleSubmit}>
+        <input type="text" defaultValue="John" ref={inputRef} />
+        <button type="submit">Submit</button>
+        </form>
+        );
+        }
+
+
+        The value is stored in the DOM, not in React state.
+
+        We use ref to read the value when needed.
